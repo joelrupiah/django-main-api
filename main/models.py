@@ -11,7 +11,7 @@ class Teacher(models.Model):
     password=models.CharField(max_length=100)
     qualification=models.CharField(max_length=200)
     mobile=models.CharField(max_length=20)
-    address=models.TextField()
+    skills=models.TextField()
 
 # COURSE CATEGORY MODEL
 
