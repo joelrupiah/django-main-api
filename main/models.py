@@ -29,6 +29,7 @@ class CourseCategory(models.Model):
 
     def __str__ (self):
         return self.title
+
 # COURSE MODEL
 
 class Course(models.Model):
@@ -38,6 +39,18 @@ class Course(models.Model):
     description=models.TextField()
     featured_image=models.ImageField(upload_to='course_images/', null=True)
     technologies=models.TextField(null=True)
+
+    def __str__ (self):
+        return self.title
+
+# CHAPTER MODEL
+
+class Chapter(models.Model):
+    course=models.ForeignKey(Course, on_delete=models.CASCADE)
+    title=models.CharField(max_length=150)
+    description=models.TextField()
+    video=models.FileField(upload_to='chapter_videos/', null=True)
+    remarks=models.TextField(null=True)
 
     def __str__ (self):
         return self.title
