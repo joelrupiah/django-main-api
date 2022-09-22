@@ -15,6 +15,9 @@ urlpatterns = [
      # Teacher Courses
     path('teacher-courses/<int:teacher_id>', views.TeacherCourseList.as_view()),
 
+    # Teacher Specific Courses Detail
+    path('teacher-courses-detail/<int:pk>', views.TeacherCourseDetail.as_view()),
+
     # Chapter
     path('chapter/', views.ChapterList.as_view()),
 

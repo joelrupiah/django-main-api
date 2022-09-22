@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 # from rest_framework.views import APIView
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, CourseSerializer
 # from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import permissions
@@ -50,7 +50,7 @@ class CourseList(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
 
 # Specific Teacher Course
-class TeacherCourseList(generics.ListAPIView):
+class TeacherCourseList(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
 
     # override to get course according to teacher
@@ -59,6 +59,11 @@ class TeacherCourseList(generics.ListAPIView):
         teacher_id=self.kwargs['teacher_id']
         teacher=models.Teacher.objects.get(pk=teacher_id)
         return models.Course.objects.filter(teacher=teacher)
+
+# Specific Teacher Course Detail
+class TeacherCourseDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset=models.Course.objects.all()
+    serializer_class = CourseSerializer
 
 # Chapter
 class ChapterList(generics.ListCreateAPIView):
